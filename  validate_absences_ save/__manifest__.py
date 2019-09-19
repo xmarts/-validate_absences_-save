@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "validate_absences_ save",
+    'name': "validate_absences_save",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as

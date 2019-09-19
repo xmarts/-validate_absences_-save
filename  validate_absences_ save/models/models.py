@@ -14,10 +14,13 @@ class primermodulo(models.Model):
     def create(self, values):
         val= super(primermodulo, self).create(values)
         fecha_actual = val.fecha_ac
-        fecha_ex = val.expiration
+        fecha_ex = val.holiday_status_id.validity_stop
+        print(fecha_actual)
+        print(fecha_ex)
         busque = self.env['hr.leave.allocation'].search([('employee_id','=',val.employee_id.id),('extended_permission','=',True),('holiday_status_id','=',val.holiday_status_id.id)],limit=1)
         em = busque.extended_permission
         if em == False:
-            if  fecha_actual > fecha_ex:
-                raise ValidationError('Estos días ya vencieron, selecciona otra asignación distinta a esta e intentalo de nuevo.')
+            if fecha_actual and fecha_ex:
+                if  fecha_actual > fecha_ex:
+                    raise ValidationError('Estos días ya vencieron, selecciona otra asignación distinta a esta e intentalo de nuevo.')
         return val
