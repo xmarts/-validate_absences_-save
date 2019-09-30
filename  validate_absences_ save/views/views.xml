@@ -12,7 +12,18 @@
       </field>
     </record>
 
-
+     <record id="inherit_fields" model="ir.ui.view">
+              <field name="name">field.leave.asignations</field>
+              <field name="model">hr.leave.allocation</field>
+              <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_form_manager"/>
+              <field name="arch" type="xml">
+              
+                <xpath expr="//field[@name='extended_permission']" position="after">
+                
+                  <field name="vacaciones_filtro"/>
+                </xpath>
+              </field>
+      </record>
 
     
   </data>
